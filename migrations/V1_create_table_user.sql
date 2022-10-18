@@ -12,5 +12,5 @@ id, nome, ativo, criado_em, atualizado_em
 )
 VALUES
 (
-1, 'Dione', true, NOW() ::timestamp, NOW() ::timestamp
+1, 'Gabriela', true, NOW() ::timestamp, NOW() ::timestamp
 )

@@ -6,22 +6,22 @@ export default class AppConfig {
   constructor(private configService: ConfigService) {}
 
   get dbHost(): string {
-    return this.configService.get<string>('db_Host');
+    return this.configService.get<string>('DB_HOST');
   }
 
   get dbPort(): number {
-    return this.configService.get<number>('db_Port');
+    return this.configService.get<number>('DB_PORT');
   }
 
-  get dbUsername(): string {
-    return this.configService.get<string>('db_Username');
+  get dbUserName(): string {
+    return this.configService.get<string>('DB_USERNAME');
   }
 
   get dbPassword(): string {
-    return this.configService.get<string>('db_Password');
+    return this.configService.get<string>('DB_PASSWORD');
   }
 
   get dbName(): string {
-    return this.configService.get<string>('db_Name');
+    return this.configService.get<string>('DB_NAME');
   }
 }

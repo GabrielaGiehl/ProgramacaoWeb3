@@ -4,6 +4,7 @@ import {
 } from '@nestjs/typeorm';
 
 import AppConfig from '../../config/app.config';
+import { AppConfigModule } from '../../appconfig.module';
 
 export default class TypeOrmConfig {
   static getOrmConfig(appConfig: AppConfig): TypeOrmModuleOptions {
@@ -11,17 +12,18 @@ export default class TypeOrmConfig {
       type: 'postgres',
       host: appConfig.dbHost,
       port: appConfig.dbPort,
-      username: appConfig.dbUsername,
+      username: appConfig.dbUserName,
       password: appConfig.dbPassword,
       database: appConfig.dbName,
-      entities: [],
+      // entities: [__dirname + '/../../**/*.entity.{js,ts}'],
       synchronize: false,
       logging: true,
     };
   }
 }
 
-export const TypeOrmConfigAsync: TypeOrmModuleAsyncOptions = {
+export const typeOrmConfigAsync: TypeOrmModuleAsyncOptions = {
+  imports: [AppConfigModule],
   useFactory: async (appConfig: AppConfig): Promise<TypeOrmModuleOptions> =>
     TypeOrmConfig.getOrmConfig(appConfig),
   inject: [AppConfig],
