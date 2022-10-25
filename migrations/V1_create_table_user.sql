@@ -1,5 +1,5 @@
 create table IF NOT EXISTS usuarios(
-id int not null PRIMARY KEY,
+id int not null PRIMARY KEY SERIAL,
 nome varchar (256) NOT NULL,
 ativo boolean NOT NULL,
 criado_em TIMESTAMP,

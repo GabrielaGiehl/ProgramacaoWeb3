@@ -18,6 +18,7 @@ import UserEntity from './models/entities/user.entity';
       // entities: [__dirname + '/../../**/*.entity.{js,ts}'],
       entities: [UserEntity],
       synchronize: false,
+      //migrations: ['./src/migrations/*.ts'],
       ssl: {
         rejectUnauthorized: false,
       },

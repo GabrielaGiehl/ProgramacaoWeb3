@@ -4,30 +4,60 @@ import UserEntity from '../models/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import UsersOutput from '../models/dto/output/users.output';
+import UsersConverter from '../models/converters/users.converter';
+import UsersInput from '../models/dto/input/users.input';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepo: Repository<UserEntity>,
+    private readonly usersConverter: UsersConverter,
   ) {}
 
-  findAll() {
-    return this.userRepo.find();
+  async findAll(): Promise<UsersOutput[]> {
+    const userEntities = await this.userRepo.find();
+
+    const outputList = userEntities.map((entity) => {
+      return this.usersConverter.entityToOutput(entity);
+    });
+
+    return outputList;
+  }
+
+  async save(input: UsersInput) {
+    const entity = new UserEntity();
+
+    const convertedEntity = this.usersConverter.inputToEntity(input, entity);
+
+    const savedEntity = await this.userRepo.save(convertedEntity);
+
+    const output = this.usersConverter.entityToOutput(savedEntity);
+
+    return output;
+  }
+
+  async update(id: number, input: UsersInput): Promise<UsersOutput> {
+    const userEntity = await this.userRepo.findOne({ where: { id: id } });
+
+    const convertedEntity = this.usersConverter.inputToEntity(
+      input,
+      userEntity,
+    );
+
+    const savedEntity = await this.userRepo.save(convertedEntity);
+
+    const output = this.usersConverter.entityToOutput(savedEntity);
+
+    return output;
   }
 
   async findOne(id: number) {
-    const userEntity = await this.userRepo.findOne({ where: { id } });
+    const userEntity = await this.userRepo.findOne({ where: { id: id } });
 
-    const userOutput = new UsersOutput();
+    const output = this.usersConverter.entityToOutput(userEntity);
 
-    userOutput.id = userEntity.id;
-    userOutput.name = userEntity.name;
-    userOutput.active = userEntity.active;
-    userOutput.createdAt = userEntity.createdAt;
-    userOutput.updatedAt = userEntity.updatedAt;
-
-    return userOutput;
+    return output;
   }
 
   async updateName(id: number, name: string) {
@@ -37,18 +67,12 @@ export class UsersService {
 
     const userSaved = await this.userRepo.save(userEntity);
 
-    const userOutput = new UsersOutput();
+    const output = this.usersConverter.entityToOutput(userSaved);
 
-    userOutput.id = userSaved.id;
-    userOutput.name = userSaved.name;
-    userOutput.active = userSaved.active;
-    userOutput.createdAt = userSaved.createdAt;
-    userOutput.updatedAt = userSaved.updatedAt;
-
-    return userOutput;
+    return output;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    return await this.userRepo.delete(id);
   }
 }
