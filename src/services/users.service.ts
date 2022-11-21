@@ -72,7 +72,7 @@ export class UsersService {
     return output;
   }
 
-  async remove(id: number) {
-    return await this.userRepo.delete(id);
+  remove(id: number) {
+    return `This action removes a #${id} user`;
   }
 }

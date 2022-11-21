@@ -1,18 +1,19 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('usuarios')
-export default class UserEntity {
+@Entity('movies')
+export default class moviesEntity {
   @PrimaryGeneratedColumn()
   id?: number;
 
-  @Column({ name: 'nome', type: 'varchar' })
-  name: string;
+  @Column({ name: 'titulo', type: 'varchar' })
+  titulo: string;
 
-  @Column({ name: 'senha', type: 'varchar' })
-  password: string;
+  @Column({ name: 'user-id', type: 'varchar' })
+  user-id: string;
 
-  @Column({ name: 'ativo', type: 'boolean' })
-  active: boolean;
+
+  @Column({ name: 'imagem', type: 'boolean' })
+  imagem: boolean;
 
   @Column({
     name: 'criado_em',
