@@ -2,10 +2,10 @@ import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateUser1668388238783 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('movies');
+    await queryRunner.dropTable('favoritos-filmes');
     await queryRunner.createTable(
       new Table({
-        name: 'movies',
+        name: 'favoritos-filmes',
         columns: [
           {
             name: 'id',
@@ -23,7 +23,7 @@ export class CreateUser1668388238783 implements MigrationInterface {
             type: 'varchar(1000)',
           },
           {
-            name: 'user-id',
+            name: 'user_id',
             type: 'boolean',
           },
           {

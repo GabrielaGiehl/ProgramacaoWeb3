@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('movies')
+@Entity('favoritos-filmes')
 export default class moviesEntity {
   @PrimaryGeneratedColumn()
   id?: number;
@@ -8,22 +8,23 @@ export default class moviesEntity {
   @Column({ name: 'titulo', type: 'varchar' })
   titulo: string;
 
-  @Column({ name: 'user-id', type: 'varchar' })
-  user-id: string;
+  @Column({ name: 'user_id', type: 'varchar' })
+  
 
 
   @Column({ name: 'imagem', type: 'boolean' })
-  imagem: boolean;
-
+  
   @Column({
     name: 'criado_em',
     type: 'timestamp',
   })
-  createdAt: Date;
+  
 
   @Column({
     name: 'atualizado_em',
     type: 'timestamp',
   })
-  updatedAt: Date;
+  
+
 }
+
