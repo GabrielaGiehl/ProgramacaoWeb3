@@ -2,10 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import moviesEntity from '../models/entities/movies.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-
-import UsersOutput from '../models/dto/output/users.output';
 import moviesConverter from '../models/converters/movies.converter';
-import UsersInput from '../models/dto/input/users.input';
+import MoviesInput from 'src/models/dto/input/movies.input';
+import MoviesOutput from 'src/models/dto/output/movies.output';
 
 @Injectable()
 export class moviesService {
@@ -15,7 +14,7 @@ export class moviesService {
     private readonly moviesConverter: moviesConverter,
   ) {}
 
-  async findAll(): Promise<UsersOutput[]> {
+  async findAll(): Promise<MoviesOutput[]> {
     const moviesEntities = await this.userRepo.find();
 
     const outputList = moviesEntities.map((entity) => {
@@ -25,7 +24,7 @@ export class moviesService {
     return outputList;
   }
 
-  async save(input: UsersInput) {
+  async save(input: MoviesInput) {
     const entity = new moviesEntity();
 
     const convertedEntity = this.moviesConverter.inputToEntity(input, entity);
@@ -37,7 +36,7 @@ export class moviesService {
     return output;
   }
 
-  async update(id: number, input: UsersInput): Promise<UsersOutput> {
+  async update(id: number, input: MoviesInput): Promise<MoviesOutput> {
     const moviesEntity = await this.userRepo.findOne({ where: { id: id } });
 
     const convertedEntity = this.moviesConverter.inputToEntity(
@@ -72,7 +71,7 @@ export class moviesService {
     return output;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    return await this.userRepo.delete(id);
   }
 }

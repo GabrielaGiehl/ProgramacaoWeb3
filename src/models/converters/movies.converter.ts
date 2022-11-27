@@ -8,11 +8,10 @@ import moviesInput from '../dto/input/movies.input';
 export default class moviesConverter {
   inputToEntity(input: moviesInput, entity: moviesEntity) {
     entity.id = input.id;
-    entity.name = input.name;
-    entity.name = input.imagem;
-    entity.name = input.user - id;
+    entity.titulo = input.titulo;
+    entity.imagem = input.imagem;
     entity.createdAt = new Date();
-    entity.updatedAt = new Date();
+    entity.updateAt = new Date();
 
     return entity;
   }
@@ -21,10 +20,10 @@ export default class moviesConverter {
     const output = new moviesOutput();
 
     output.id = entity.id;
-    output.name = entity.name;
-    output.active = entity.active;
+    output.titulo = entity.titulo;
+    output.imagem = entity.imagem;
     output.createdAt = entity.createdAt;
-    output.updatedAt = entity.updatedAt;
+    output.updatedAt = entity.updateAt;
 
     return output;
   }

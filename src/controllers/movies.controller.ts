@@ -14,8 +14,8 @@ import { ApiTags, ApiCreatedResponse } from '@nestjs/swagger';
 import moviesOutput from '../models/dto/output/movies.output';
 import moviesInput from '../models/dto/input/movies.input';
 
-@ApiTags('movies')
-@Controller('movies')
+@ApiTags('favoriteMovies')
+@Controller('favoriteMovies')
 export class MoviesController {
   constructor(private readonly moviesService: moviesService) {}
 
@@ -49,5 +49,10 @@ export class MoviesController {
   @ApiCreatedResponse({ type: moviesOutput })
   updateName(@Param('id') id: string, @Query('name') name: string) {
     return this.moviesService.updateName(+id, name);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.moviesService.remove(+id);
   }
 }

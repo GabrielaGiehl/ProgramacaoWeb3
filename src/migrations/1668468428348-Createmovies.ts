@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateUser1668388238783 implements MigrationInterface {
+export class CreateMovies1668552869878783 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('favoritos-filmes');
+    await queryRunner.dropTable('favoritos_filmes');
     await queryRunner.createTable(
       new Table({
-        name: 'favoritos-filmes',
+        name: 'favoritos_filmes',
         columns: [
           {
             name: 'id',
@@ -23,10 +23,6 @@ export class CreateUser1668388238783 implements MigrationInterface {
             type: 'varchar(1000)',
           },
           {
-            name: 'user_id',
-            type: 'boolean',
-          },
-          {
             name: 'criado_em',
             type: 'timestamp',
           },
@@ -40,6 +36,6 @@ export class CreateUser1668388238783 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('movies');
+    await queryRunner.dropTable('favoritos_filmes');
   }
 }

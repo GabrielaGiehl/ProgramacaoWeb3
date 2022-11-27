@@ -5,11 +5,8 @@ export default class MoviesInput {
   id?: number;
 
   @ApiProperty()
-  name: string;
+  titulo: string;
 
   @ApiProperty()
-  password: string;
-
-  @ApiProperty()
-  active: boolean;
+  imagem: string;
 }

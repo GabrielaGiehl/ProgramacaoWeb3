@@ -5,10 +5,10 @@ export default class MoviesOutput {
   id: number;
 
   @ApiProperty()
-  name: string;
+  titulo: string;
 
   @ApiProperty()
-  active: boolean;
+  imagem: string;
 
   @ApiProperty()
   createdAt: Date;

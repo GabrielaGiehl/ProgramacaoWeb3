@@ -1,30 +1,25 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
-@Entity('favoritos-filmes')
+@Entity('favoritos_filmes')
 export default class moviesEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   id?: number;
 
   @Column({ name: 'titulo', type: 'varchar' })
   titulo: string;
 
-  @Column({ name: 'user_id', type: 'varchar' })
-  
+  @Column({ name: 'imagem', type: 'varchar' })
+  imagem: string;
 
-
-  @Column({ name: 'imagem', type: 'boolean' })
-  
   @Column({
     name: 'criado_em',
     type: 'timestamp',
   })
-  
+  createdAt: Date;
 
   @Column({
     name: 'atualizado_em',
     type: 'timestamp',
   })
-  
-
+  updateAt: Date;
 }
-
