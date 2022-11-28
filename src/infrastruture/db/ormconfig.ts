@@ -11,8 +11,8 @@ export const typeOrmConnectionDataSource = new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: ['./.src/models/entities/*.ts'],
-  migrations: ['./src/migrations/*ts'],
+  entities: ['./src/models/entities/*.ts'],
+  migrations: ['./src/migrations/*.ts'],
   synchronize: false,
   ssl: {
     rejectUnauthorized: false,

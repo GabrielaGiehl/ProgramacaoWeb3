@@ -4,7 +4,7 @@ import {
 } from '@nestjs/typeorm';
 
 import AppConfig from '../../config/app.config';
-//import { AppConfigModule } from '../../appconfig.module';
+import { AppConfigModule } from '../../appconfig.module';
 
 export default class TypeOrmConfig {
   static getOrmConfig(appConfig: AppConfig): TypeOrmModuleOptions {
@@ -23,7 +23,7 @@ export default class TypeOrmConfig {
 }
 
 export const typeOrmConfigAsync: TypeOrmModuleAsyncOptions = {
-  //imports: [AppConfigModule],
+  imports: [AppConfigModule],
   useFactory: async (appConfig: AppConfig): Promise<TypeOrmModuleOptions> =>
     TypeOrmConfig.getOrmConfig(appConfig),
   inject: [AppConfig],

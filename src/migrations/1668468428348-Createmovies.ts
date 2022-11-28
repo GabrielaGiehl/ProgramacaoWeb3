@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateMovies1668552869878783 implements MigrationInterface {
+export class CreateMovies1668552751825483 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable('favoritos_filmes');
     await queryRunner.createTable(

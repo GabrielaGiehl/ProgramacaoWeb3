@@ -8,8 +8,8 @@ export default class UserEntity {
   @Column({ name: 'nome', type: 'varchar' })
   name: string;
 
-  @Column({ name: 'senha', type: 'varchar' })
-  password: string;
+  //@Column({ name: 'senha', type: 'varchar' })
+  //password: string;
 
   @Column({ name: 'ativo', type: 'boolean' })
   active: boolean;
